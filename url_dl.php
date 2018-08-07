@@ -87,16 +87,21 @@ if($urlType == "m")
 }
 
 if($urlType == "www")
-{
+{	
 	$start = strpos($curl_result,'checkUrlAndGo_Td');
-	if($start === true)
+	
+	/*
+	 *这一段有bug先注释掉，好像是网页编码的问题...等有心情再说...
+	if($start === false)
 		{die("不是一个有效的视频地址！（请不要忘记http或https！）");}
+	*/
 	$start = strpos($videoPageUrl, "com/") + 4;
 	$mPageUrl = "http://m.tangdou.com/" . substr($videoPageUrl, $start);
 	echo "移动端页面url：" . $mPageUrl . "<br>";
 	echo "将跳转到移动端页面进行处理...请稍等...";
 	header("Location:url_dl.php?vurl=" . $mPageUrl);
 	exit;
+	
 }
 
 ?>

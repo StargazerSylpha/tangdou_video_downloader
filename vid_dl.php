@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 echo '<a href="index.html"><-返回</a><br>';
-echo "糖豆视频下载器 vid_dl（适用于所有<=v94，部分v95） Version：20180807 by：Sylpha" . "<br>";
+echo "糖豆视频下载器 vid_dl（适用于所有<=v94，部分v95） Version：20180830 by：Sylpha" . "<br>";
 echo "==========" . "<br>";
 
 $vid = $_GET['vid'];
@@ -43,6 +43,7 @@ echo "视频代码id（videourl）：" . $videourl . "<br>";
 echo "视频名称：" . $videoName . "<br>";
 echo "==========" . "<br>";
 
+/*
 $accweb = strpos($getPageSourceResult,"accweb");
 $aucshare = strpos($getPageSourceResult,"aucshare");
 
@@ -70,6 +71,18 @@ if($aucshare >= 0 && $accweb == false)
     echo 'aucshare下载地址：' . $aucshareDlLink . "<br>";
 
 }
+
+*/
+
+	echo "方式：aqiniushare<br>";
+	$aqiniushareLink = "https://aqiniushare.tangdou.com/" . $videourl . "-10.mp4";
+	$aqiniushareStart = strpos($getPageSourceResult,$aqiniushareLink);
+	$aqiniushareSign = substr($getPageSourceResult,$aqiniushareStart + strlen($aqiniushareLink) + 1,48);
+	echo "aqiniushareSign：" . $aqiniushareSign . "<br>";
+	$aqiniushareDlLink = $aqiniushareLink . "?" . $aqiniushareSign;
+	echo "aqiniushare下载地址：" . $aqiniushareDlLink ."<br>";
+
+
 	echo "==========" . "<br>";
     echo '注意：请直接复制链接到浏览器或迅雷中下载，地址会查HTTP Referer来源。';
     exit;

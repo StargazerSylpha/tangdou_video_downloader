@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 echo '<a href="index.html"><-返回</a><br>';
-echo "糖豆视频下载器 url_dl（适用于全部视频，包括部分无法使用vid_dl的v95） Version：20180807 by：Sylpha" . "<br>";
+echo "糖豆视频下载器 url_dl（适用于全部视频，包括部分无法使用vid_dl的v95） Version：20180830 by：Sylpha" . "<br>";
 echo "==========" . "<br>";
 $videoPageUrl = $_GET['vurl'];
 
@@ -74,13 +74,13 @@ if($urlType == "m")
 	curl_close($curl_link);
 	//建立curl连接设置===end===
 	$start = strpos($curl_result,'src=\"');
-	$end = strpos($curl_result, '\" wmode=');
+	$end = strpos($curl_result, '\"></video>');
 	$dlLink = substr($curl_result,$start + 6,$end - $start - 6);
-	$start = strpos($dlLink, "k=");
-	$aucshareSign = substr($dlLink, $start,31);
-	echo "方式：aucshare<br>";
-	echo "aucshareSign：" . $aucshareSign . "<br>";
-	echo "aucshare下载地址：" . $dlLink . "<br>";
+	$start = strpos($dlLink, "sign=");
+	$aqiniushareSign = substr($dlLink, $start,48);
+	echo "方式：aqiniushare<br>";
+	echo "aqiniushareSign：" . $aqiniushareSign . "<br>";
+	echo "aqiniushare下载地址：" . $dlLink . "<br>";
 	echo "==========" . "<br>";
     echo '注意：请直接复制链接到浏览器或迅雷中下载，地址会查HTTP Referer来源。';
     exit;
